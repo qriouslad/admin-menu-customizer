@@ -93,8 +93,8 @@ class Custom_Admin_Menu {
 
 		foreach ( $menu as $menu_key => $menu_info ) {
 
-			do_action( 'inspect', [ 'menu_key_' . $i, $menu_key ] );
-			do_action( 'inspect', [ 'menu_info_' . $i, $menu_info ] );
+			// do_action( 'inspect', [ 'menu_key_' . $i, $menu_key ] );
+			// do_action( 'inspect', [ 'menu_info_' . $i, $menu_info ] );
 
 			if ( false !== strpos( $menu_info[4], 'wp-menu-separator' ) ) {
 				$menu_item_id = $menu_info[2];
