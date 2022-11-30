@@ -68,9 +68,9 @@ class Admin_Menu_Customizer {
 		// Apply the customizations to admin menu
 		add_filter( 'custom_menu_order', '__return_true' );
 		add_filter( 'menu_order', [ $admin_menu, 'render_custom_menu_order' ] );
-		add_action( 'admin_menu', [ $admin_menu, 'apply_custom_menu_item_titles' ], 888 );
-		add_action( 'admin_menu', [ $admin_menu, 'hide_menu_items' ], 999 );
-		add_action( 'admin_menu', [ $admin_menu, 'add_hidden_menu_toggle' ] );
+		add_action( 'admin_menu', [ $admin_menu, 'apply_custom_menu_item_titles' ], 70 );
+		add_action( 'admin_menu', [ $admin_menu, 'hide_menu_items' ], 80 );
+		add_action( 'admin_menu', [ $admin_menu, 'add_hidden_menu_toggle' ], 90 );
 	}
 
 }
