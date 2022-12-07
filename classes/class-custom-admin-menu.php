@@ -20,7 +20,7 @@ class Custom_Admin_Menu {
 
 		global $menu;
 
-		$options = get_option( AMCUST_SLUG_U );
+		$options = get_option( AMCUST_SLUG_U, array() );
 
 		// Get current menu order. We're not using the default $menu_order which uses index.php, edit.php as array values.
 
@@ -97,7 +97,7 @@ class Custom_Admin_Menu {
 
 		global $menu;
 
-		$options = get_option( AMCUST_SLUG_U );
+		$options = get_option( AMCUST_SLUG_U, array() );
 
 		// Get custom menu item titles
 		if ( array_key_exists( 'custom_menu_titles', $options ) ) {
@@ -152,7 +152,7 @@ class Custom_Admin_Menu {
 
 		global $menu;
 
-		$options = get_option( AMCUST_SLUG_U );
+		$options = get_option( AMCUST_SLUG_U, array() );
 
 		// Get hidden menu items
 
@@ -188,7 +188,7 @@ class Custom_Admin_Menu {
 	 */
 	public function add_hidden_menu_toggle() {
 
-		$options = get_option( AMCUST_SLUG_U );
+		$options = get_option( AMCUST_SLUG_U, array() );
 
 		// Get hidden menu items
 
