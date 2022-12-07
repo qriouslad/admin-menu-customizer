@@ -5,7 +5,7 @@ Donate link: https://paypal.me/qriouslad
 Tags: menu, admin menu, menu order, hide menu, custom menu   
 Requires at least: 4.6  
 Tested up to: 6.1.1  
-Stable tag: 1.1.0  
+Stable tag: 1.1.1  
 Requires PHP: 5.6  
 License: GPLv2 or later  
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
@@ -17,11 +17,14 @@ Customize the order of the admin menu and optionally change menu item titles or 
 ## Description
 
 **Admin Menu Customizer** allows you to:
+
 * Change the order of menu items.
 * Change the title of menu items added by active plugins and theme.
 * Hide menu items on page load, with a "Show All" toggle to reveal them on click.
 
 This is useful to keep your admin menu tidy when your site grows more complex and have more menu items than can fit on the screen. It also helps you and site editors, authors and contributors focus on the most relevant menu items, e.g. for managing content.
+
+The functionality of this plugin is included as part of the [Admin and Site Enhancements](https://wordpress.org/plugins/admin-site-enhancements/), should you prefer a single plugin that does more than one thing.
 
 ### Give Back
 
@@ -51,6 +54,10 @@ This is useful to keep your admin menu tidy when your site grows more complex an
 I wanted something simpler in terms of UI and something useful enough in terms of features than what is available.
 
 ## Changelog
+
+### 1.1.1 (2022.12.07)
+
+* Fix plugin action link, i.e. the "Customize now" link in the plugins page.
 
 ### 1.1.0 (2022.12.07)
 
