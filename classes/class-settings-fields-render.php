@@ -23,6 +23,7 @@ class Settings_Fields_Render {
 
 		global $menu;
 		global $submenu;
+		$common_methods = new Common_Methods;
 		$options = get_option( AMCUST_SLUG_U, array() );
 
 		// Set menu items to be excluded from title renaming. These are from WordPress core.
@@ -53,6 +54,8 @@ class Settings_Fields_Render {
 			$custom_menu = $options['custom_menu_order'];
 			$custom_menu = explode( ',', $custom_menu );
 
+			$menu_key_in_use = array();
+
 			// Render sortables with data in custom menu order
 
 			foreach ( $custom_menu as $custom_menu_item ) {
@@ -82,7 +85,7 @@ class Settings_Fields_Render {
 							echo '~~ ' . esc_html( $separator_name ) . ' ~~';
 						} else {
 							if ( in_array( $menu_item_id, $renaming_not_allowed ) ) {
-								echo wp_kses_post( $menu_info[0] );
+								echo wp_kses_post( $common_methods->strip_html_tags_and_content( $menu_info[0] ) );
 							} else {
 
 								// Get defaul/custom menu item title
@@ -92,11 +95,10 @@ class Settings_Fields_Render {
 
 									$custom_menu_title = explode( '__', $custom_menu_title );
 
-									if ( $custom_menu_title[0] == $menu_item_id ) {
-										$menu_item_title = $custom_menu_title[1]; // e.g. Code Snippets
+									if ( $custom_menu_title[0] == $menu_item_id ) {										$menu_item_title = $common_methods->strip_html_tags_and_content( $custom_menu_title[1] ); // e.g. Code Snippets
 										break; // stop foreach loop so $menu_item_title is not overwritten in the next iteration
 									} else {
-										$menu_item_title = $menu_info[0];
+										$menu_item_title = $common_methods->strip_html_tags_and_content( $menu_info[0] );
 									}
 
 								}
@@ -153,7 +155,69 @@ class Settings_Fields_Render {
 
 						<?php
 
+						$menu_key_in_use[] = $menu_key;
+
 					}
+
+				}
+
+			}
+
+			// Render the rest of the current menu towards the end of the sortables
+
+			foreach ( $menu as $menu_key => $menu_info ) {
+
+				if ( ! in_array( $menu_key, $menu_key_in_use ) ) {
+
+					$menu_item_id = $menu_info[5];
+					$menu_item_title = $menu_info[0];
+
+					// Exclude Show All/Less toggles
+
+					if ( false === strpos( $menu_item_id, 'toplevel_page_amcust_' ) ) {
+
+						?>
+						<li id="<?php echo esc_attr( $menu_item_id ); ?>" class="menu-item menu-item-depth-0">
+							<div class="menu-item-bar">
+								<div class="menu-item-handle ui-sortable-handle">
+									<div class="item-title">
+										<span class="menu-item-title">
+											<input type="text" value="<?php echo wp_kses_post( $menu_item_title ); ?>" class="menu-item-custom-title" data-menu-item-id="<?php echo esc_attr( $menu_item_id ); ?>">
+										</span>
+										<label class="menu-item-checkbox-label">
+											<input type="checkbox" class="menu-item-checkbox" data-menu-item-id="<?php echo esc_attr( $menu_item_id ); ?>">
+											<span>Hide</span>
+										</label>
+									</div>
+								</div>
+							</div>
+						<?php
+
+					}
+
+					$i = 1;
+
+					if ( array_key_exists( $menu_info[2], $submenu ) && @is_countable( $submenu[$menu_info[2]] ) && @sizeof( $submenu[$menu_info[2]] ) > 0 ) {
+						?>
+						<div class="menu-item-settings wp-clearfix" style="display:none;">
+						<?php
+
+						foreach ( $submenu[$menu_info[2]] as $submenu_item ) {
+
+							$i++;
+
+							// echo $submenu_item[0];
+
+						}
+						?>
+						</div>
+						<?php
+
+					}
+					?>
+					</li>
+
+					<?php
 
 				}
 
@@ -186,10 +250,10 @@ class Settings_Fields_Render {
 					echo '~~ ' . esc_html( $separator_name ) . ' ~~';
 				} else {
 					if ( in_array( $menu_item_id, $renaming_not_allowed ) ) {
-						echo wp_kses_post( $menu_info[0] );
+							echo wp_kses_post( $common_methods->strip_html_tags_and_content( $menu_info[0] ) );
 					} else {
 						?>
-						<input type="text" value="<?php echo wp_kses_post( $menu_info[0] ); ?>" class="menu-item-custom-title" data-menu-item-id="<?php echo esc_attr( $menu_item_id ); ?>">
+						<input type="text" value="<?php echo wp_kses_post( $common_methods->strip_html_tags_and_content( $menu_info[0] ) ); ?>" class="menu-item-custom-title" data-menu-item-id="<?php echo esc_attr( $menu_item_id ); ?>">
 						<?php
 					}
 				}
@@ -231,7 +295,9 @@ class Settings_Fields_Render {
 
 			}
 
+
 		}
+
 
 		?>
 		</ul>

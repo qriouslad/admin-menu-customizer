@@ -28,6 +28,10 @@
     min-width: 240px;
 }
 
+.amcust-header .notice {
+    display: none;
+}
+
 .amcust-body {
     background-color: #fff;
     border-right: 1px solid #ccd0d4;
@@ -197,6 +201,18 @@
 .custom-menu-order .menu-item-title span,
 .custom-menu-order .menu-item-settings .submenu-item span {
     /* display: none; */
+}
+
+/* .custom-menu-order .menu-item-title span.awaiting-mod,
+.custom-menu-order .menu-item-title span.update-plugins {
+    display: none;
+} */
+
+#separator1 .menu-item-title,
+#separator2 .menu-item-title,
+#separator-last .menu-item-title {
+    font-weight: normal;
+    color: #999;
 }
 
 .sortable-placeholder {

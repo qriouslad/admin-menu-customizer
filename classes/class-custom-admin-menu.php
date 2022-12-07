@@ -52,6 +52,8 @@ class Custom_Admin_Menu {
 
 		$rendered_menu_order = array();
 
+		// Render menu based on items saved in custom menu order
+
 		foreach ( $custom_menu_order as $custom_menu_item_id ) {
 
 			foreach ( $current_menu_order as $current_menu_item_id => $current_menu_item ) {
@@ -65,6 +67,22 @@ class Custom_Admin_Menu {
 			}
 
 		}
+
+		// do_action( 'inspect', [ 'rendered_menu_order', $rendered_menu_order ] );
+
+		// Add items from current menu not already part of custom menu order, e.g. new plugin activated and adds new menu item
+
+		foreach ( $current_menu_order as $current_menu_item_id => $current_menu_item ) {
+
+			if ( ! in_array( $current_menu_item[0], $custom_menu_order ) ) {
+
+				$rendered_menu_order[] = $current_menu_item[1];
+
+			}
+
+		}
+
+		// do_action( 'inspect', [ 'rendered_menu_order_complete', $rendered_menu_order ] );
 
 		return $rendered_menu_order;
 
@@ -93,8 +111,8 @@ class Custom_Admin_Menu {
 
 		foreach ( $menu as $menu_key => $menu_info ) {
 
-			do_action( 'inspect', [ 'menu_key_' . $i, $menu_key ] );
-			do_action( 'inspect', [ 'menu_info_' . $i, $menu_info ] );
+			// do_action( 'inspect', [ 'menu_key_' . $i, $menu_key ] );
+			// do_action( 'inspect', [ 'menu_info_' . $i, $menu_info ] );
 
 			if ( false !== strpos( $menu_info[4], 'wp-menu-separator' ) ) {
 				$menu_item_id = $menu_info[2];
