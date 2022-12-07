@@ -28,6 +28,10 @@
     min-width: 240px;
 }
 
+.amcust-header .notice {
+    display: none;
+}
+
 .amcust-body {
     background-color: #fff;
     border-right: 1px solid #ccd0d4;
