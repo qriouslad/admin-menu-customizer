@@ -4,7 +4,7 @@
  * Plugin Name:       Admin Menu Customizer
  * Plugin URI:        https://wordpress.org/plugins/admin-menu-customizer/
  * Description:       Customize admin menu by reordering items, changing item titles or hiding some items
- * Version:           1.0.0
+ * Version:           1.1.0
  * Author:            Bowo
  * Author URI:        https://bowo.io
  * License:           GPL-2.0+
@@ -18,7 +18,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'AMCUST_VERSION', '1.0.0' );
+define( 'AMCUST_VERSION', '1.1.0' );
 define( 'AMCUST_ID', 'amcust' );
 define( 'AMCUST_SLUG', 'admin-menu-customizer' );
 define( 'AMCUST_SLUG_U', 'admin_menu_customizer' );

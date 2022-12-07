@@ -5,7 +5,7 @@ Donate link: https://paypal.me/qriouslad
 Tags: menu, admin menu, menu order, hide menu, custom menu   
 Requires at least: 4.6  
 Tested up to: 6.1.1  
-Stable tag: 1.0.0  
+Stable tag: 1.1.0  
 Requires PHP: 5.6  
 License: GPLv2 or later  
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
@@ -52,6 +52,15 @@ I wanted something simpler in terms of UI and something useful enough in terms o
 
 ## Changelog
 
-### 1.0.0 (2022.10.30)
+### 1.1.0 (2022.12.07)
+
+* Ensure menu items newly added by activated plugins and them show up in the menu and the menu item sortables.
+* Ensure Show All / Show Less toggle is rendered last in the menu
+* Fade out sortables for menu separators, so that actual menu items are shown more clearly
+* Ensure stubborn admin notices does not show up in plugin page's header
+* Strip all HTML tags and content in them from menu item sortables
+* Substantially lower priorities of Admin Menu Cuztomizer actions so that menu items added late by active plugins and theme are handled properly, i.e. have custom order, title and hide status as defined via the sortables
+
+### 1.0.0 (2022.12.07)
 
 * Initial stable release. 
