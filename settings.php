@@ -113,7 +113,7 @@ function amcust_admin_scripts( $hook_suffix ) {
 
 function amcust_plugin_action_links( $links ) {
 
-	$settings_link = '<a href="tools.php?page=' . AMCUST_SLUG . '">Customize now</a>';
+	$settings_link = '<a href="options-general.php?page=' . AMCUST_SLUG . '">Customize now</a>';
 
 	array_unshift($links, $settings_link); 
 
