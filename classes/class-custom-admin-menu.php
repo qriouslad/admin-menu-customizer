@@ -20,7 +20,7 @@ class Custom_Admin_Menu {
 
 		global $menu;
 
-		$options = get_option( AMCUST_SLUG_U );
+		$options = get_option( AMCUST_SLUG_U, array() );
 
 		// Get current menu order. We're not using the default $menu_order which uses index.php, edit.php as array values.
 
@@ -39,13 +39,7 @@ class Custom_Admin_Menu {
 		}
 
 		// Get custom menu order
-
-		if ( array_key_exists( 'custom_menu_order', $options ) ) {
-			$custom_menu_order = $options['custom_menu_order']; // comma separated
-		} else {
-			$custom_menu_order = '';
-		}
-
+		$custom_menu_order = $options['custom_menu_order']; // comma separated
 		$custom_menu_order = explode( ",", $custom_menu_order ); // array of menu ID, e.g. menu-dashboard
 
 		// Return menu order for rendering
@@ -68,8 +62,6 @@ class Custom_Admin_Menu {
 
 		}
 
-		// do_action( 'inspect', [ 'rendered_menu_order', $rendered_menu_order ] );
-
 		// Add items from current menu not already part of custom menu order, e.g. new plugin activated and adds new menu item
 
 		foreach ( $current_menu_order as $current_menu_item_id => $current_menu_item ) {
@@ -81,8 +73,6 @@ class Custom_Admin_Menu {
 			}
 
 		}
-
-		// do_action( 'inspect', [ 'rendered_menu_order_complete', $rendered_menu_order ] );
 
 		return $rendered_menu_order;
 
@@ -97,22 +87,13 @@ class Custom_Admin_Menu {
 
 		global $menu;
 
-		$options = get_option( AMCUST_SLUG_U );
+		$options = get_option( AMCUST_SLUG_U, array() );
 
 		// Get custom menu item titles
-		if ( array_key_exists( 'custom_menu_titles', $options ) ) {
-			$custom_menu_titles = $options['custom_menu_titles'];
-			$custom_menu_titles = explode( ',', $custom_menu_titles );
-		} else {
-			$custom_menu_titles = array();
-		}	
-
-		$i = 1;
+		$custom_menu_titles = $options['custom_menu_titles'];
+		$custom_menu_titles = explode( ',', $custom_menu_titles );
 
 		foreach ( $menu as $menu_key => $menu_info ) {
-
-			// do_action( 'inspect', [ 'menu_key_' . $i, $menu_key ] );
-			// do_action( 'inspect', [ 'menu_info_' . $i, $menu_info ] );
 
 			if ( false !== strpos( $menu_info[4], 'wp-menu-separator' ) ) {
 				$menu_item_id = $menu_info[2];
@@ -138,8 +119,6 @@ class Custom_Admin_Menu {
 
 			$menu[$menu_key][0] = $menu_item_title;
 
-			$i++;
-
 		}
 	}
 
@@ -152,16 +131,11 @@ class Custom_Admin_Menu {
 
 		global $menu;
 
-		$options = get_option( AMCUST_SLUG_U );
+		$options = get_option( AMCUST_SLUG_U, array() );
 
 		// Get hidden menu items
-
-		if ( array_key_exists( 'custom_menu_hidden', $options ) ) {
-			$hidden_menu = $options['custom_menu_hidden'];
-			$hidden_menu = explode( ',', $hidden_menu );
-		} else {
-			$hidden_menu = array();
-		}
+		$hidden_menu = $options['custom_menu_hidden'];
+		$hidden_menu = explode( ',', $hidden_menu );
 
 		foreach ( $menu as $menu_key => $menu_info ) {
 
@@ -188,15 +162,10 @@ class Custom_Admin_Menu {
 	 */
 	public function add_hidden_menu_toggle() {
 
-		$options = get_option( AMCUST_SLUG_U );
+		$options = get_option( AMCUST_SLUG_U, array() );
 
 		// Get hidden menu items
-
-		if ( array_key_exists( 'custom_menu_hidden', $options ) ) {
-			$hidden_menu = $options['custom_menu_hidden'];
-		} else {
-			$hidden_menu = '';
-		}
+		$hidden_menu = $options['custom_menu_hidden'];
 
 		if ( ! empty( $hidden_menu ) ) {
 

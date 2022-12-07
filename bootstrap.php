@@ -66,11 +66,20 @@ class Admin_Menu_Customizer {
 		$admin_menu = new AMCUST\Classes\Custom_Admin_Menu;
 
 		// Apply the customizations to admin menu
-		add_filter( 'custom_menu_order', '__return_true' );
-		add_filter( 'menu_order', [ $admin_menu, 'render_custom_menu_order' ] );
-		add_action( 'admin_menu', [ $admin_menu, 'apply_custom_menu_item_titles' ], 1000 );
-		add_action( 'admin_menu', [ $admin_menu, 'hide_menu_items' ], 1001 );
-		add_action( 'admin_menu', [ $admin_menu, 'add_hidden_menu_toggle' ], 1002 );
+
+		$options = get_option( AMCUST_SLUG_U, array() );
+
+		if ( array_key_exists( 'custom_menu_order', $options ) ) {
+			add_filter( 'custom_menu_order', '__return_true' );
+			add_filter( 'menu_order', [ $admin_menu, 'render_custom_menu_order' ] );
+		}
+		if ( array_key_exists( 'custom_menu_titles', $options ) ) {
+			add_action( 'admin_menu', [ $admin_menu, 'apply_custom_menu_item_titles' ], 1000 );			
+		}
+		if ( array_key_exists( 'custom_menu_hidden', $options ) ) {
+			add_action( 'admin_menu', [ $admin_menu, 'hide_menu_items' ], 1001 );
+			add_action( 'admin_menu', [ $admin_menu, 'add_hidden_menu_toggle' ], 1002 );			
+		}
 	}
 
 }
