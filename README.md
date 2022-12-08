@@ -5,7 +5,7 @@ Donate link: https://paypal.me/qriouslad
 Tags: menu, admin menu, menu order, hide menu, custom menu   
 Requires at least: 4.6  
 Tested up to: 6.1.1  
-Stable tag: 1.1.3  
+Stable tag: 1.1.4  
 Requires PHP: 5.6  
 License: GPLv2 or later  
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
@@ -54,6 +54,10 @@ The functionality of this plugin is included as part of [Admin and Site Enhancem
 I wanted something simpler in terms of UI and something useful enough in terms of features than what is available.
 
 ## Changelog
+
+### 1.1.4 (2022.12.08)
+
+* Enqueue jQuery UI widget.min.js for WP version less than 5.6.0. This ensures the feature works for those WP versions.
 
 ### 1.1.3 (2022.12.08)
 
